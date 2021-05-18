@@ -5,6 +5,8 @@ import AddPlace from './components/AddPlace'
 
 
 function App() {
+  const [showAddPlace, setShowAddPlace, ] = useState(false)
+
   const [places, setPlaces] = useState([
     {
       id: 1,
@@ -29,6 +31,13 @@ function App() {
     }
   ])
 
+  // Add Place
+  const addPlace = (place) => {
+    const id = Math.floor(Math.random() * 10000) +1
+    const newPlace = {id, ...place}
+    setPlaces([...places, newPlace])
+  }
+  
   // delete place
   const deletePlace = (id) => {
     setPlaces(places.filter((place) => place.id !== id))
@@ -36,7 +45,6 @@ function App() {
 
   // toggle favorite
   const togglefavorite = (id) => {
-    console.log(id)
     setPlaces(places.map((place) =>
       place.id === id ?
         { ...place, favorite: !place.favorite }
@@ -47,8 +55,9 @@ function App() {
 
   return (
     <div className="container">
-      <Header />
-      <AddPlace />
+      <Header onAdd={() => setShowAddPlace
+        (!showAddPlace)} showAdd={showAddPlace}/>
+      {showAddPlace && <AddPlace onAdd={addPlace}/>}
       {places.length > 0 ? (
         <Places
           places={places}
