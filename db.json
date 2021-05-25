@@ -1,0 +1,25 @@
+{
+  "places": [
+    {
+      "id": 2,
+      "name": "Arches",
+      "state": "Utah",
+      "type": "National Park",
+      "favorite": false
+    },
+    {
+      "id": 3,
+      "name": "New Orleans",
+      "state": "Louisiana",
+      "type": "City",
+      "favorite": true
+    },
+    {
+      "name": "Grand Canyon",
+      "type": "National Park",
+      "state": "Arizona",
+      "favorite": true,
+      "id": 4
+    }
+  ]
+}
