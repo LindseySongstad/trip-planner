@@ -2,9 +2,10 @@ import { useState } from 'react'
 
 const AddPlace = ({ onAdd }) => {
     const [name, setName] = useState('')
+    const [priority, setPriority] = useState('')
     const [type, setType] = useState('')
     const [state, setState] = useState('')
-    const [favorite, setFavorite] = useState(false)
+    const [booked, setBooked] = useState(false)
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -14,12 +15,13 @@ const AddPlace = ({ onAdd }) => {
             return
         }
 
-        onAdd({ name, type, state, favorite })
+        onAdd({ name, priority, type, state, booked })
 
         setName('')
+        setPriority('')
         setType('')
         setState('')
-        setFavorite(false)
+        setBooked(false)
     }
 
     return (
@@ -31,6 +33,17 @@ const AddPlace = ({ onAdd }) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
+            </div>
+            <div className='form-control'>
+                <label htmlFor="priority">Priority</label>
+                <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+                    <option value="" disabled selected hidden>Add Priority</option>
+                    <option value="1" style={{color: 'blue'}}>1 - Must See</option>
+                    <option value="2" style={{color: 'green'}}>2 - Probably</option>
+                    <option value="3" style={{color: 'yellow'}}>3 - Maybe</option>
+                    <option value="4" style={{color: 'orange'}}>4 - Maybe not</option>
+                    <option value="5" style={{color: 'red'}}>5 - Only with extra time</option>
+                </select>
             </div>
             <div className='form-control'>
                 <label htmlFor="type">Type</label>
@@ -52,12 +65,12 @@ const AddPlace = ({ onAdd }) => {
                 />
             </div>
             <div className='form-control form-control-check'>
-                <label htmlFor="">Favorite?</label>
+                <label htmlFor="">Booked?</label>
                 <input
                     type="checkbox"
-                    checked={favorite}
-                    value={favorite}
-                    onChange={(e) => setFavorite(e.currentTarget.checked)}
+                    checked={booked}
+                    value={booked}
+                    onChange={(e) => setBooked(e.currentTarget.checked)}
                 />
             </div>
 

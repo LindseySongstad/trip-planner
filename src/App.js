@@ -60,12 +60,12 @@ function App() {
     setPlaces(places.filter((place) => place.id !== id))
   }
 
-  // toggle favorite
-  const togglefavorite = async (id) => {
+  // toggle booked
+  const toggleBooked = async (id) => {
     const placeToToggle = await fetchPlace(id)
     const updPlace = {
-      ...placeToToggle, favorite:
-        !placeToToggle.favorite
+      ...placeToToggle, booked:
+        !placeToToggle.booked
     }
 
     const res = await fetch(`http://localhost:5000/places/${id}`, {
@@ -80,7 +80,7 @@ function App() {
 
     setPlaces(places.map((place) =>
       place.id === id ?
-        { ...place, favorite: data.favorite }
+        { ...place, booked: data.booked }
         : place
     )
     )
@@ -99,7 +99,7 @@ function App() {
               <Places
                 places={places}
                 onDelete={deletePlace}
-                onToggle={togglefavorite}
+                onToggle={toggleBooked}
               />
             ) : (
               'No places to show'
