@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const AddPlace = ({onAdd}) => {
+const AddPlace = ({ onAdd }) => {
     const [name, setName] = useState('')
     const [type, setType] = useState('')
     const [state, setState] = useState('')
@@ -9,12 +9,12 @@ const AddPlace = ({onAdd}) => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        if(!name){
+        if (!name) {
             alert('Please add a place')
             return
         }
 
-        onAdd({ name, type, state, favorite})
+        onAdd({ name, type, state, favorite })
 
         setName('')
         setType('')
@@ -33,16 +33,18 @@ const AddPlace = ({onAdd}) => {
                 />
             </div>
             <div className='form-control'>
-                <label htmlFor="">Type</label>
-                <input type="text"
-                    placeholder='Add Type'
-                    value={type}
-                    onChange={(e) => setType(e.target.value)}
-                />
+                <label htmlFor="type">Type</label>
+                <select value={type} onChange={(e) => setType(e.target.value)}>
+                    <option value="" disabled selected hidden>Add Type</option>
+                    <option value="National Park">National Park</option>
+                    <option value="City">City</option>
+                    <option value="RV Park">RV Park</option>
+                    <option value="Attraction">Attraction</option>
+                </select>
             </div>
             <div className='form-control'>
                 <label htmlFor="">State</label>
-                <input 
+                <input
                     type="text"
                     placeholder='Add State'
                     value={state}
@@ -51,16 +53,16 @@ const AddPlace = ({onAdd}) => {
             </div>
             <div className='form-control form-control-check'>
                 <label htmlFor="">Favorite?</label>
-                <input 
+                <input
                     type="checkbox"
                     checked={favorite}
                     value={favorite}
-                    onChange={(e) => setFavorite(e.currentTarget.checked)} 
+                    onChange={(e) => setFavorite(e.currentTarget.checked)}
                 />
             </div>
 
             <input type="submit" value="Save Place"
-            className='btn btn-block' />
+                className='btn btn-block' />
         </form>
     )
 }

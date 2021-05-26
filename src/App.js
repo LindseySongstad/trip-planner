@@ -49,10 +49,6 @@ function App() {
     const data = await res.json()
 
     setPlaces([...places, data])
-
-    // const id = Math.floor(Math.random() * 10000) +1
-    // const newPlace = {id, ...place}
-    // setPlaces([...places, newPlace])
   }
 
   // delete place

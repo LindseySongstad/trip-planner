@@ -1,13 +1,6 @@
 {
   "places": [
     {
-      "id": 2,
-      "name": "Arches",
-      "state": "Utah",
-      "type": "National Park",
-      "favorite": false
-    },
-    {
       "id": 3,
       "name": "New Orleans",
       "state": "Louisiana",
@@ -20,6 +13,20 @@
       "state": "Arizona",
       "favorite": true,
       "id": 4
+    },
+    {
+      "name": "Arches",
+      "type": "National Park",
+      "state": "Utah",
+      "favorite": false,
+      "id": 5
+    },
+    {
+      "name": "Bryce",
+      "type": "National Park",
+      "state": "Utah",
+      "favorite": false,
+      "id": 6
     }
   ]
 }
