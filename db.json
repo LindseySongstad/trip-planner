@@ -30,7 +30,7 @@
       "state": "Utah",
       "favorite": false,
       "id": 6,
-      "booked": true
+      "booked": false
     },
     {
       "name": "test",

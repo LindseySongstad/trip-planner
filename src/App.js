@@ -5,10 +5,12 @@ import Footer from './components/Footer'
 import Places from './components/Places'
 import AddPlace from './components/AddPlace'
 import About from './components/About'
+import FilterForm from './components/FilterForm'
 
 
 function App() {
   const [showAddPlace, setShowAddPlace,] = useState(false)
+  const [showFilterBool, setShowFilter,] = useState(false)
   const [places, setPlaces] = useState([])
 
   useEffect(() => {
@@ -85,16 +87,39 @@ function App() {
     )
     )
   }
+  
+  // Filter
+  const Filter = () => {
+    // to do 
+  }
+
+  const onAddClick = () => { 
+    if (showFilterBool) {
+      setShowAddPlace(!showAddPlace);
+      setShowFilter(false)
+    } else {setShowAddPlace(!showAddPlace)}
+  }
+
+  const onFilterClick = () => {
+    if (showAddPlace) {
+      setShowAddPlace(false);  
+      setShowFilter(!showFilterBool)
+    } else {setShowFilter(!showFilterBool) } 
+  }
 
   return (
     <Router>
       <div className="container">
-        <Header onAdd={() => setShowAddPlace
-          (!showAddPlace)} showAdd={showAddPlace}
+        <Header 
+          onAdd={onAddClick} 
+          showAdd={showAddPlace}
+          onFilter={onFilterClick} 
+          showFilter={showFilterBool}
         />
         <Route path='/' exact render={(props) => (
           <>
             {showAddPlace && <AddPlace onAdd={addPlace} />}
+            {showFilterBool && <FilterForm onFilter={Filter} />}
             {places.length > 0 ? (
               <Places
                 places={places}
