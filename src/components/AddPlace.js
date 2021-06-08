@@ -37,7 +37,7 @@ const AddPlace = ({ onAdd }) => {
             <div className='form-control'>
                 <label htmlFor="priority">Priority</label>
                 <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-                    <option value="" disabled selected hidden>Add Priority</option>
+                    <option value="" disabled defaultValue hidden>Add Priority</option>
                     <option value="1" style={{color: 'blue'}}>1 - Must See</option>
                     <option value="2" style={{color: 'green'}}>2 - Probably</option>
                     <option value="3" style={{color: 'yellow'}}>3 - Maybe</option>
@@ -48,7 +48,7 @@ const AddPlace = ({ onAdd }) => {
             <div className='form-control'>
                 <label htmlFor="type">Type</label>
                 <select value={type} onChange={(e) => setType(e.target.value)}>
-                    <option value="" disabled selected hidden>Add Type</option>
+                    <option value="" disabled defaultValue hidden>Add Type</option>
                     <option value="National Park">National Park</option>
                     <option value="City">City</option>
                     <option value="RV Park">RV Park</option>
