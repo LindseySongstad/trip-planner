@@ -12,6 +12,7 @@ function App() {
   const [showAddPlace, setShowAddPlace,] = useState(false)
   const [showFilter, setShowFilter,] = useState(false)
   const [places, setPlaces] = useState([])
+  const [priority, setPriority] = useState('');
 
   useEffect(() => {
     const getPlaces = async () => {
@@ -88,19 +89,19 @@ function App() {
     )
   }
 
-  // Filter
-  const Filter = (priority) => {
-    
-    setPlaces(places.filter((place) => place.priority === priority.priority))
-  }
+  // filtered places list
+  const filteredPlaces =
+    priority === '' || showFilter === false ? places
+      : places.filter((place) => place.priority === priority);
 
+  // when add button is clicked toggle add view
   const onAddClick = () => {
     if (showFilter) {
       setShowAddPlace(!showAddPlace);
       setShowFilter(false)
     } else { setShowAddPlace(!showAddPlace) }
   }
-
+  // when filter button is clicked toggle filter view
   const onFilterClick = () => {
     if (showAddPlace) {
       setShowAddPlace(false);
@@ -120,10 +121,13 @@ function App() {
         <Route path='/' exact render={(props) => (
           <>
             {showAddPlace && <AddPlace onAdd={addPlace} />}
-            {showFilter && <FilterForm onFilter={Filter} />}
+            {showFilter && <FilterForm
+              changePriority={setPriority}
+              priority={priority}
+            />}
             {places.length > 0 ? (
               <Places
-                places={places}
+                places={filteredPlaces}
                 onDelete={deletePlace}
                 onToggle={toggleBooked}
               />
