@@ -6,6 +6,7 @@ import Places from './components/Places'
 import AddPlace from './components/AddPlace'
 import About from './components/About'
 import FilterForm from './components/FilterForm'
+import Map from './components/Map'
 
 
 function App() {
@@ -111,33 +112,38 @@ function App() {
 
   return (
     <Router>
-      <div className="container">
-        <Header
-          onAdd={onAddClick}
-          showAdd={showAddPlace}
-          onFilter={onFilterClick}
-          showFilter={showFilter}
-        />
-        <Route path='/' exact render={(props) => (
-          <>
-            {showAddPlace && <AddPlace onAdd={addPlace} />}
-            {showFilter && <FilterForm
-              changePriority={setPriority}
-              priority={priority}
-            />}
-            {places.length > 0 ? (
-              <Places
-                places={filteredPlaces}
-                onDelete={deletePlace}
-                onToggle={toggleBooked}
-              />
-            ) : (
-              'No places to show'
-            )}
-          </>
-        )} />
-        <Route path='/about' component={About} />
-        <Footer />
+      <div className='grid-container'>
+        <div className="container">
+          <Header
+            onAdd={onAddClick}
+            showAdd={showAddPlace}
+            onFilter={onFilterClick}
+            showFilter={showFilter}
+          />
+          <Route path='/' exact render={(props) => (
+            <>
+              {showAddPlace && <AddPlace onAdd={addPlace} />}
+              {showFilter && <FilterForm
+                changePriority={setPriority}
+                priority={priority}
+              />}
+              {places.length > 0 ? (
+                <Places
+                  places={filteredPlaces}
+                  onDelete={deletePlace}
+                  onToggle={toggleBooked}
+                />
+              ) : (
+                'No places to show'
+              )}
+            </>
+          )} />
+          <Route path='/about' component={About} />
+          <Footer />
+        </div>
+        <div className='map-container'>
+          <Map />
+        </div>
       </div>
     </Router>
   );
