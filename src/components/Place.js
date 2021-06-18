@@ -2,8 +2,6 @@ import { FaTimes } from 'react-icons/fa'
 
 const Place = ({ place, onDelete, onToggle }) => {
     return (
-        
-
         <div className={`priority${place.priority} place ${place.booked ? 'booked' : ''}` } onDoubleClick={()=> 
         onToggle(place.id)}>
             <h3>

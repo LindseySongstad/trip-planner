@@ -3,34 +3,46 @@
     {
       "id": 3,
       "name": "New Orleans",
+      "priority": "1",
       "state": "Louisiana",
       "type": "City",
       "favorite": true,
-      "booked": true
+      "booked": true,
+      "lat": 29.951763,
+      "lng": -90.074615
     },
     {
       "name": "Grand Canyon",
+      "priority": "1",
       "type": "National Park",
       "state": "Arizona",
       "favorite": true,
       "id": 4,
-      "booked": true
+      "booked": true,
+      "lat": 36.056595,
+      "lng": -112.125092
     },
     {
       "name": "Arches",
       "type": "National Park",
+      "priority": "2",
       "state": "Utah",
       "favorite": false,
       "id": 5,
-      "booked": false
+      "booked": false,
+      "lat": 38.733082,
+      "lng": -109.592514
     },
     {
       "name": "Bryce",
+      "priority": "3",
       "type": "National Park",
       "state": "Utah",
       "favorite": false,
       "id": 6,
-      "booked": false
+      "booked": false,
+      "lat": 37.6402605,
+      "lng": -112.1696395
     },
     {
       "name": "test",

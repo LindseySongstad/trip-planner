@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Header from './components/Header'
+import ListHeader from './components/ListHeader'
 import Footer from './components/Footer'
 import Places from './components/Places'
 import AddPlace from './components/AddPlace'
 import About from './components/About'
 import FilterForm from './components/FilterForm'
 import Map from './components/Map'
+import Header from './components/Header'
 
 
 function App() {
@@ -112,9 +113,10 @@ function App() {
 
   return (
     <Router>
+      <Header />
       <div className='grid-container'>
-        <div className="container">
-          <Header
+        <div className="list-container">
+          <ListHeader
             onAdd={onAddClick}
             showAdd={showAddPlace}
             onFilter={onFilterClick}
@@ -141,9 +143,7 @@ function App() {
           <Route path='/about' component={About} />
           <Footer />
         </div>
-        <div className='map-container'>
-          <Map />
-        </div>
+        <Map places={filteredPlaces}/>
       </div>
     </Router>
   );
