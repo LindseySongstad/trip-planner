@@ -6,7 +6,6 @@ import InfoBox from './InfoBox'
 
 const Map = ({ center, zoom, places }) => {
     const [selected, setSelected] = useState(null)
-
     const markers = places.map((place) => {
         if (place.lat) {
             return <MapMarker key={place.id} lat={place.lat} lng={place.lng} onClick={() => setSelected({ name: place.name })} />
@@ -15,9 +14,11 @@ const Map = ({ center, zoom, places }) => {
     })
 
     return (
-//process.env.REACT_APP_GOOGLE_API_KEY
         <div className='map-container'>
             <div className='map'>
+
+            {console.log('hello')}
+
                 <GoogleMapReact
 
                     bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY}}
@@ -29,7 +30,6 @@ const Map = ({ center, zoom, places }) => {
                 </GoogleMapReact>
                 {selected && <InfoBox info={selected} />}
             </div>
-
         </div>
     )
 }
