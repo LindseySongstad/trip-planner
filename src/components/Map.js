@@ -1,30 +1,64 @@
-import React from 'react'
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { useState } from "react";
+import React from "react";
 
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
+
+const libraries = ["places"];
 
 const center = {
   lat: 30,
-  lng: -100
+  lng: -100,
 };
 
-function Map() {
+const Map = ({ places }) => {
+  const [selected, setSelected] = useState(null)
+
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyCPNbJMxsZXKNpXDCz0Pv2iA_jc6R6Nlqs',
+    libraries,
+  });
+  if (loadError) return "Error";
+  if (!isLoaded) return "Loading...";
+
   return (
     <div className='map-container'>
-      <LoadScript
-        googleMapsApiKey=''
-
+      <GoogleMap
+        mapContainerClassName='map'
+        zoom={4}
+        center={center} 
       >
-        <GoogleMap
-          mapContainerClassName='map'
-          center={center}
-          zoom={4.5}
-        >
-          { /* Child components, such as markers, info windows, etc. */}
-          <></>
-        </GoogleMap>
-      </LoadScript>
+        {places.map((place) => {
+          if (place.lat) {
+            return <Marker
+              key={place.id}
+              position={{ lat: place.lat, lng: place.lng }}
+
+              onClick={() => {
+                setSelected(place);
+              }} />
+          }
+          return null
+        })}
+
+        {selected ? (<InfoWindow
+          position={{ lat: selected.lat, lng: selected.lng }}
+          onCloseClick={()=>setSelected(null)}
+          >
+          <div>
+            <h2>{selected.name}</h2>
+            <p>{selected.type}</p>
+          </div>
+        </InfoWindow>) : null}
+
+      </GoogleMap>
     </div>
   )
 }
 
-export default React.memo(Map)
+export default Map
+
