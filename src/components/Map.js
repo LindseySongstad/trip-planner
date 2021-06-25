@@ -19,7 +19,7 @@ const Map = ({ places }) => {
   const [selected, setSelected] = useState(null)
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCPNbJMxsZXKNpXDCz0Pv2iA_jc6R6Nlqs',
+    googleMapsApiKey: 'api-key-here',
     libraries,
   });
   if (loadError) return "Error";
