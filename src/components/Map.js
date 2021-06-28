@@ -19,8 +19,8 @@ const Map = ({ places }) => {
   const [selected, setSelected] = useState(null)
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyCPNbJMxsZXKNpXDCz0Pv2iA_jc6R6Nlqs',
-    libraries,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    libraries
   });
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
