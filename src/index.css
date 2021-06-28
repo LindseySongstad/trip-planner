@@ -40,35 +40,14 @@ body {
   position: relative;
 }
 
-.map-marker {
-  font-size: 2rem;
-  color: red;
-}
-
-.map-info {
-  position: relative;
-  top: -300px;
-  right: 0px;
-  width: 400px;
-  min-height: 200px;
-  padding: 20px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  font-size: 18px;
-  color: #fff;
-
-}
-
 .list-container {
   max-width: 500px;
-
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
-
 }
 
 .list-header {
@@ -76,7 +55,6 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-
 }
 
 .btn {

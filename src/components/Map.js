@@ -1,45 +1,65 @@
-import { useState } from 'react'
-import GoogleMapReact from 'google-map-react'
-import MapMarker from './MapMarker'
-import InfoBox from './InfoBox'
+import { useState } from "react";
+import React from "react";
 
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
 
-const Map = ({ center, zoom, places }) => {
-    const [selected, setSelected] = useState(null)
+const libraries = ["places"];
 
-    const markers = places.map((place) => {
-        if (place.lat) {
-            return <MapMarker key={place.id} lat={place.lat} lng={place.lng} onClick={() => setSelected({ name: place.name })} />
-        }
-        return null
-    })
+const center = {
+  lat: 30,
+  lng: -100,
+};
 
-    return (
-//process.env.REACT_APP_GOOGLE_API_KEY
-        <div className='map-container'>
-            <div className='map'>
-                <GoogleMapReact
+const Map = ({ places }) => {
+  const [selected, setSelected] = useState(null)
 
-                    bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY}}
-                    defaultCenter={center}
-                    defaultZoom={zoom}
-                >
-                    {markers}
-                    
-                </GoogleMapReact>
-                {selected && <InfoBox info={selected} />}
-            </div>
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+    libraries
 
-        </div>
-    )
+  });
+  if (loadError) return "Error";
+  if (!isLoaded) return "Loading...";
+
+  return (
+    <div className='map-container'>
+      <GoogleMap
+        mapContainerClassName='map'
+        zoom={4}
+        center={center} 
+      >
+        {places.map((place) => {
+          if (place.lat) {
+            return <Marker
+              key={place.id}
+              position={{ lat: place.lat, lng: place.lng }}
+
+              onClick={() => {
+                setSelected(place);
+              }} />
+          }
+          return null
+        })}
+
+        {selected ? (<InfoWindow
+          position={{ lat: selected.lat, lng: selected.lng }}
+          onCloseClick={()=>setSelected(null)}
+          >
+          <div>
+            <h2>{selected.name}</h2>
+            <p>{selected.type}</p>
+          </div>
+        </InfoWindow>) : null}
+
+      </GoogleMap>
+    </div>
+  )
 }
 
-Map.defaultProps = {
-    center: {
-        lat: 40.0,
-        lng: -100.0
-    },
-    zoom: 4.5
-}
+export default Map
 
-export default Map;
