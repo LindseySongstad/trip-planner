@@ -1,5 +1,6 @@
 import { useState } from "react";
 import React from "react";
+import SearchBar from "./SearchBar";
 
 import {
   GoogleMap,
@@ -8,12 +9,12 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
-const libraries = ["places"];
-
 const center = {
   lat: 30,
   lng: -100,
 };
+
+const libraries = ["places"];
 
 const Map = ({ places }) => {
   const [selected, setSelected] = useState(null)
@@ -21,13 +22,13 @@ const Map = ({ places }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
     libraries
-
   });
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
   return (
     <div className='map-container'>
+      <SearchBar></SearchBar>
       <GoogleMap
         mapContainerClassName='map'
         zoom={4}
