@@ -40,6 +40,10 @@ body {
   position: relative;
 }
 
+.search{
+  z-index: 10;
+}
+
 .list-container {
   max-width: 500px;
   margin: 30px auto;

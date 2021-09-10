@@ -28,11 +28,11 @@ const Map = ({ places }) => {
 
   return (
     <div className='map-container'>
-      <SearchBar></SearchBar>
+      <SearchBar ></SearchBar>
       <GoogleMap
         mapContainerClassName='map'
         zoom={4}
-        center={center} 
+        center={center}
       >
         {places.map((place) => {
           if (place.lat) {
@@ -49,8 +49,8 @@ const Map = ({ places }) => {
 
         {selected ? (<InfoWindow
           position={{ lat: selected.lat, lng: selected.lng }}
-          onCloseClick={()=>setSelected(null)}
-          >
+          onCloseClick={() => setSelected(null)}
+        >
           <div>
             <h2>{selected.name}</h2>
             <p>{selected.type}</p>
